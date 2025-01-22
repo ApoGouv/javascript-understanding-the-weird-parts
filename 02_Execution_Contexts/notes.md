@@ -78,3 +78,36 @@ In this example:
 - The code provides:
   - A place to start.
   - Completed code.
+
+
+## 2.4 The Global Environment and The Global Object
+
+- **Execution Context**:
+  - **Execution context** is a wrapper that the JavaScript engine creates when your code runs. It helps manage the environment in which your code executes.
+  - There are multiple execution contexts during a JavaScript program's execution, but the **base execution context** is called the **global execution context**.
+  
+- **Global Object**:
+  - The **global execution context** creates two key things automatically:
+    1. **Global Object**: In the browser environment, this is the `window` object. It provides access to various global properties and methods.
+    2. **`this`**: A special variable automatically created by the JavaScript engine. In the global context, `this` refers to the global object (i.e., `window` in browsers).
+  - These are set up by the JavaScript engine, even if no code is explicitly written to define them.
+  
+- **Global Scope**:
+  - When code or variables are **not inside a function**, they are considered to be in the **global scope**. This means they are accessible throughout the entire program.
+  - Variables and functions defined in the global scope are attached to the **global object**. For example, if you declare a variable `a`, it becomes accessible as `window.a` in browsers.
+  - This means that any code running in the global context can access these global variables and functions, and these variables/functions become part of the global object.
+
+- **Behavior in the Browser**:
+  - In a browser (e.g., Google Chrome), the global object is the `window` object. This allows you to access global variables and functions using the `window` object or directly (e.g., `window.a` or just `a`).
+  - The special variable `this` at the global level refers to the same `window` object, so `this === window` in the global context.
+  - If you open a new browser tab, it will have its own separate execution context and a separate global object, though each tab has its own `window` object.
+  
+- **Outer Environment**:
+  - The concept of the **outer environment** comes into play when you are inside a function. At the global level, there is no "outer" environment, so it’s referred to as `null`.
+  - This concept will be important later when discussing functions, as they create their own execution contexts with links to their outer environments (the scope from which they were called).
+  
+- **Key Takeaways**:
+  - **Global Execution Context**: When you run JavaScript code, the global execution context is created automatically. This context provides a **global object** (like `window` in browsers) and the special variable `this`.
+  - **Global Object and `this`**: In browsers, the global object is `window`, and at the global scope, `this` refers to the same `window` object. This is true even without writing code.
+  - **Global Variables/Functions**: Variables and functions declared in the global scope are added to the global object, meaning you can access them as properties of the global object (`window.a`).
+  - **Lexical Environment**: Variables and functions are placed in the global execution context unless they are within a function. The global environment has no outer context, which is why it’s referred to as `null`.

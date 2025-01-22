@@ -70,3 +70,11 @@ In this example:
 - **Objects in JavaScript** are essentially collections of **Name/Value pairs**.
 - **Nesting**: The value of a Name/Value pair can be another object, allowing the creation of complex, nested structures.
 - Keep in mind: **JavaScript objects are simple** – just Name/Value pairs, and their value can be another object.
+
+
+## 2.3 Downloading Source Code for This Course
+
+- From this point forward, most lectures will contain downloadable source code.
+- The code provides:
+  - A place to start.
+  - Completed code.

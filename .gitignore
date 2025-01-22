@@ -1,0 +1,25 @@
+# OS files
+.DS_Store            # macOS Finder metadata
+Thumbs.db            # Windows Explorer thumbnails
+desktop.ini          # Windows desktop configuration
+
+# Node.js dependencies (if you use npm or Node.js for exercises)
+node_modules/
+
+# Editor files
+.vscode/             # VSCode workspace settings
+*.code-workspace     # VSCode workspace files
+
+# Logs and temporary files
+*.log                # Log files
+*.tmp                # Temporary files
+
+# Archives and compressed files
+*.zip
+*.tar.gz
+*.7z
+*.rar
+
+# Folders provided by the instructor (do not push to GitHub)
+course-materials-code-samples/
+course-materials-code-samples.zip

@@ -1,3 +1,8 @@
+b();
+console.log(a);
+
 var a = 'Hello World!';
 
-function b() {}
+function b() {
+  console.log('Called b!');
+}

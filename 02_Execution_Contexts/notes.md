@@ -111,3 +111,33 @@ In this example:
   - **Global Object and `this`**: In browsers, the global object is `window`, and at the global scope, `this` refers to the same `window` object. This is true even without writing code.
   - **Global Variables/Functions**: Variables and functions declared in the global scope are added to the global object, meaning you can access them as properties of the global object (`window.a`).
   - **Lexical Environment**: Variables and functions are placed in the global execution context unless they are within a function. The global environment has no outer context, which is why it’s referred to as `null`.
+
+
+## 2.5 The Execution Context - Creation and Hoisting
+
+- **Execution Context Creation**:
+  - When JavaScript runs, it creates an **execution context**, a wrapper around the code to manage its execution.
+  - This process occurs in two phases: the **creation phase** and the **execution phase**.
+  
+- **Hoisting Phenomenon**:
+  - **Hoisting** refers to a surprising JavaScript behavior where variables and functions seem to be accessible before they are defined.
+  - Example: If you call a function `b()` and log a variable `a` before defining them in your code, JavaScript won’t throw an error, even though `b()` is called before its definition.
+  - Instead of the expected value (`Hello World`), the variable `a` logs `undefined` because the JavaScript engine sets uninitialized variables to `undefined`.
+
+- **The Role of Hoisting**:
+  - Contrary to popular belief, hoisting doesn't physically move code to the top; it prepares memory space for variables and functions during the creation phase.
+  - In this phase, JavaScript allocates memory for functions and variables, making them available during the execution phase, even if they are written later in the code.
+  - Functions are fully available in memory, but variables only get assigned their values during the execution phase, which is why they are initially set to `undefined`.
+
+- **Explanation of the Creation and Execution Phases**:
+  - During the **creation phase**, the JavaScript engine scans your code to identify functions and variables. It allocates memory for them, and functions are fully stored in memory with their definitions.
+  - During the **execution phase**, the engine processes each line of code. For variables, it assigns their actual values, which are initially `undefined` if not explicitly assigned earlier.
+
+- **Best Practice**:
+  - It’s important not to rely on hoisting because the value of variables may not be what you expect. Variables are initially set to `undefined`, leading to potential issues if you assume they have been assigned values before the execution phase.
+  - Always declare and initialize variables before using them to avoid hoisting pitfalls.
+
+- **Key Takeaways**:
+  - **Hoisting** makes functions and variables accessible before they are physically defined in the code due to the creation phase, where memory space is allocated.
+  - The **execution phase** is when JavaScript actually assigns values to variables, but they are initially set to `undefined`.
+  - To avoid confusion, it’s best to declare variables and functions before using them in your code.

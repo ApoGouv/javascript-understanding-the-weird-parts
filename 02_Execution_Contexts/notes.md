@@ -213,3 +213,51 @@ In this example:
   - Assigned to declared variables that haven't been set.
   - It is not the same as a variable being "not defined."
 - Let the JavaScript engine manage `undefined` to simplify debugging and avoid confusion.
+
+
+## 2.7 The Execution Context - Code Execution
+
+In JavaScript, the execution context operates in two main phases: 
+
+1. **Creation Phase**  
+   - Variables and functions are set up in memory.
+   - Variables are initialized to `undefined`.
+
+2. **Execution Phase**  
+   - The JavaScript engine runs your code line by line.
+   - Code is interpreted, converted, compiled, and executed so the computer can understand it.
+
+---
+
+### Example Explanation
+Consider the following example:
+```javascript
+function b() {
+  console.log('Called the function');
+}
+
+console.log(a); // Line 7
+var a = 'Hello World!';
+console.log(a); // Line 11
+```
+
+### Execution Breakdown:
+
+1. Creation Phase:
+
+   - The function `b` is placed in memory.
+   - The variable `a` is also set up in memory but initialized to `undefined`.
+
+2. Execution Phase:
+
+   - The code is executed line by line:
+     - Line 5: The function `b` is called, and the console outputs: `Called b!`.
+     - Line 7: `console.log(a)` logs `undefined` because `a` has been initialized to `undefined` but hasn't yet been assigned a value.
+     - Line 9: The variable `a` is assigned the value `'Hello World!'`.
+     - Line 11: `console.log(a)` logs `'Hello World!'`.
+
+### Key Takeaways:
+- The creation phase sets up the initial memory state.
+- The execution phase runs the code sequentially, allowing updates to the memory state.
+- Understanding these two phases explains JavaScript behavior like hoisting and the `undefined` value.
+

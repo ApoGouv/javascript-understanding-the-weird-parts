@@ -28,3 +28,45 @@ Execution contexts help manage and control the environment in which your JavaScr
 These three concepts—**Syntax Parsers**, **Lexical Environments**, and **Execution Contexts**—are foundational to understanding how JavaScript works under the hood. We’ll continue to see these terms and apply them as we move forward in the course.
 
 ---
+
+
+## 2.2 Conceptual Aside: Name/Value Pairs and Objects
+
+### Name/Value Pairs:
+- A **Name/Value pair** is a relationship where a **name** (key) is associated with a **value**.
+- A key point is that in any particular **execution context**, a name can only have one value. However, that value can itself be a collection of **Name/Value pairs**.
+
+#### Example:
+```javascript
+const address = "100 Main Street"; // Name: 'address', Value: '100 Main Street'
+```
+
+### Objects in JavaScript:
+
+- In JavaScript, an **object** is a collection of **Name/Value pairs**.
+- The value associated with a name can be:
+  - A simple data type (e.g., string, number).
+  - Another object containing additional **Name/Value pairs** (this creates a **nested object**).
+
+#### Example of an Object:
+```javascript
+const address = {
+  street: "100 Main Street",
+  number: 301,
+  apartment: {
+    floor: 3,
+    number: 301
+  }
+};
+```
+
+In this example:
+
+- `address` is the object containing several Name/Value pairs.
+- The value for `apartment` is another object, with its own Name/Value pairs (`floor: 3, number: 301`).
+
+### Key points:
+
+- **Objects in JavaScript** are essentially collections of **Name/Value pairs**.
+- **Nesting**: The value of a Name/Value pair can be another object, allowing the creation of complex, nested structures.
+- Keep in mind: **JavaScript objects are simple** – just Name/Value pairs, and their value can be another object.

@@ -231,3 +231,7 @@ In JavaScript, where variable types are determined at runtime, operators must ha
 
 Understanding these rules helps you avoid bugs and write clearer, more predictable JavaScript code.
 
+
+## 3.5 Operator Precedence and Associativity Table
+
+[Javascript Operator Precedence](/pdf/Operator-Precedence-In-Javascript.pdf)

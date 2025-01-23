@@ -78,3 +78,76 @@ A **primitive type** is a type of data that represents a single, indivisible val
 ### Why Primitive Types Matter
 Understanding these six primitive types is crucial for grasping how JavaScript's **dynamic typing** works. Since the type of a variable is determined at runtime, knowing the fundamental types helps avoid and debug potential issues.
 
+
+## 3.3 Conceptual Aside: Operators
+
+Now that we've discussed **types**, let's explore another concept critical to understanding JavaScript: **operators**. Operators play a significant role in debugging and comprehending JavaScript's dynamic typing behavior.
+
+### What is an Operator? (Big Word Alert)
+An **operator** is essentially a special type of function, but with a distinct syntax. Unlike regular functions, operators are written in a way that feels more natural and concise when performing operations. Most operators take two parameters and return a single result.
+
+---
+
+### Example of an Operator: `+` (Addition Operator)
+Consider the following example:  
+```javascript
+let a = 3 + 4;
+console.log(a); // Outputs: 7
+```
+
+- The `+` symbol is the **addition operator**.  
+- The JavaScript engine interprets this as a function call, similar to this pseudocode:
+  ```javascript
+  function add(x, y) {
+      return x + y;
+  }
+  ```
+  Instead of calling it explicitly like `add(3, 4)`, JavaScript lets you use **infix notation**, where the operator (`+`) sits between the two parameters (`3` and `4`).
+
+---
+
+### Types of Notation for Operators
+- **Infix Notation:**  
+  The operator is placed between its parameters (e.g., `3 + 4`). This is the format JavaScript uses, as it’s more human-readable.
+  
+- **Prefix Notation:**  
+  The operator is placed before its parameters (e.g., `+ 3 4`).
+  
+- **Postfix Notation:**  
+  The operator is placed after its parameters (e.g., `3 4 +`).  
+  This is used in older calculators and some programming languages.
+
+---
+
+### Other Examples of Operators
+1. **Subtraction (`-`)**
+   ```javascript
+   let b = 5 - 4;
+   console.log(b); // Outputs: 1
+   ```
+
+2. **Comparison (`>` or `<`)**
+   ```javascript
+   console.log(4 > 3); // Outputs: true
+   console.log(3 < 2); // Outputs: false
+   ```
+   - Here, `>` and `<` are **comparison operators**. They take two numbers and return a Boolean (`true` or `false`).
+
+3. **Logical (`&&`, `||`)**
+   - These evaluate logical conditions and return a Boolean.
+
+4. **Equality (`==`, `===`)**
+   - These operators check if two values are equal. The distinction between `==` and `===` will be discussed later.
+
+---
+
+### Operators as Functions
+- Every operator in JavaScript is a **function**.
+- The syntax for operators (e.g., `+`, `-`, `>`) is shorthand for invoking these special functions.
+- Inside these functions, pre-written code handles the operation. For example, the `+` operator performs addition, while the `>` operator compares values.
+
+---
+
+### Why Operators Matter in a Dynamically Typed Language
+In JavaScript, where variable types are determined at runtime, operators must handle different types dynamically. This can lead to unexpected results if you’re unaware of how operators behave with mixed types. For now, remember that **operators are just special functions** provided by the JavaScript engine.
+

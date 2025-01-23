@@ -297,3 +297,78 @@ Coercion refers to converting a value from one type to another. It is a crucial 
 - Coercion is fundamental to JavaScript because it allows flexibility but demands caution to avoid bugs.
 - Understanding how coercion works enables better debugging and coding practices.
 
+
+## 3.7 Comparison Operators
+
+- **Purpose**: Learn about comparison operators in JavaScript and understand how operator precedence, associativity, and coercion impact their behavior.
+
+### Key Points:
+1. **Basic Comparisons**:
+   - `1 < 2 < 3` evaluates to `true`.
+   - `3 < 2 < 1` also evaluates to `true` due to the way JavaScript processes these operations.
+
+2. **Operator Precedence and Associativity**:
+   - Comparison operators have **left-to-right associativity**.
+   - Example: `3 < 2 < 1`:
+     - First, `3 < 2` evaluates to `false`.
+     - Then, `false < 1`: JavaScript coerces `false` into `0`.
+     - Thus, `0 < 1` is `true`.
+
+3. **Coercion**:
+   - JavaScript coerces types when operators receive unexpected types.
+   - Example:
+     - `Number(false)` returns `0`.
+     - `Number(true)` returns `1`.
+   - Undefined values (`undefined`) cannot be coerced into a number and result in `NaN`.
+   - Null values (`null`) are coerced to `0` in numeric contexts but behave differently in comparisons.
+
+4. **Equality Operators**:
+   - **Double Equals (`==`)**:
+     - Performs type coercion before checking equality.
+     - Examples:
+       - `false == 0` → `true`
+       - `null == 0` → `false`
+       - `"" == 0` → `true`
+   - **Triple Equals (`===`)**:
+     - Compares both value and type without coercion.
+     - Examples:
+       - `3 === "3"` → `false`
+       - `3 === 3` → `true`
+
+5. **Inequality Operators**:
+   - `!=` coerces types before comparing.
+   - `!==` ensures both value and type are checked without coercion.
+
+6. **Recommendation**:
+   - Always use `===` and `!==` unless you explicitly need coercion.
+   - Using `==` and `!=` can lead to unexpected behavior due to implicit coercion.
+
+### Example of Potential Bugs:
+- Variables with different types may appear equal due to coercion:
+  ```javascript
+  var a = 0; // Number
+  var b = false; // Boolean
+
+  if (a == b) {
+      console.log("They are equal"); // Output: They are equal
+  }
+
+  if (a === b) {
+      console.log("They are equal"); // No output, because types differ
+  }
+  ```
+
+7. **Reference for Comparison Rules**:
+   - Mozilla Developer Network (MDN): *[Equality Comparisons and Sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)*.
+   - Provides detailed rules for how values are compared.
+
+8. **Advanced Option**:
+   - **`Object.is`**:
+     - Provides even stricter equality checks than `===`.
+     - Example: Differentiates between `+0` and `-0`.
+     - Example: `Object.is(+0, -0)` → `false`.
+
+### Summary:
+- Understanding coercion, precedence, and associativity is crucial for writing predictable JavaScript code.
+- **Best Practice**: Use `===` and `!==` as default for comparisons to avoid unexpected coercion.
+

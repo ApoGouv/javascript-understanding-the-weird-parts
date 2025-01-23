@@ -1,8 +1,12 @@
-var a = 'hello ' + 'world';
-console.log(a); // hello world
+console.log('1 < 2 < 3: ', 1 < 2 < 3);
 
-var b = '1' + 2;
-console.log(b); // 12 - Here 2 is coerced to a string and concatenated to 1
+console.log('3 < 2 < 1: ', 3 < 2 < 1); // true - 3 < 2 is false, which is coerced to 0 [Number(false)], so 0 < 1 is true
 
-var c = 1 + '2';
-console.log(c); // 12 - Here 1 is coerced to a string and concatenated to 2
+var a = 0;
+var b = false;
+
+if (a === b) {
+  console.log('They are equal!');
+} else {
+  console.log('Nope, not equal!');
+}

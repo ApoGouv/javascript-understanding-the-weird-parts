@@ -360,3 +360,90 @@ Imagine the execution stack as a physical stack of plates:
 
 This understanding is foundational for advanced topics like asynchronous JavaScript, closures, and scope.
 
+
+## 2.10 Functions, Context, and Variable Environments
+
+This subsection explores **functions**, their **context**, and the concept of **variable environments**, which are fundamental to understanding how JavaScript handles variables and memory.
+
+### What is a Variable Environment?
+- **Big Word Alert: Variable Environment**  
+  It's simply a way of describing:
+  - Where variables live in memory.
+  - How they relate to each other.  
+
+### Example Code
+```javascript
+function b() {
+  var myVar;
+}
+function a() {
+  var myVar = 2;
+  b();
+}
+var myVar = 1;
+a();
+```
+
+### Step-by-Step Execution
+1. **Global Execution Context**  
+   - `myVar` is added to the global variable environment.
+   - Its value is set to `1` when `myVar = 1` is executed.
+
+2. **Function `a` is Invoked**  
+   - A new execution context is created for `a`.
+   - A separate `myVar` is added to `a`'s variable environment and set to `2` when `myVar = 2` is executed.
+
+3. **Function `b` is Invoked Inside `a`**  
+   - Another execution context is created for `b`.
+   - A new `myVar` is added to `b`'s variable environment.  
+   - Its initial value is `undefined` because it is declared but not assigned a value.
+
+### Scope and Execution Context
+- **Scope**: Determines where a variable can be accessed.  
+  - Each `myVar` is in its own execution context, making them distinct and independent.  
+  - Function calls do not affect variables in other contexts.
+
+### Console Output Walkthrough
+```javascript
+var myVar = 1;
+console.log(myVar); // 1
+
+function a() {
+  var myVar = 2;
+  console.log(myVar); // 2
+
+  function b() {
+    var myVar;
+    console.log(myVar); // undefined
+  }
+
+  b();
+}
+
+a();
+console.log(myVar); // 1
+```
+
+- **Output Explanation**:
+  - `1`: Global `myVar` in the global execution context.
+  - `2`: `myVar` inside `a`'s execution context.
+  - `undefined`: `myVar` inside `b`'s execution context (declared but uninitialized).
+  - `1`: Back to the global execution context after `a` and `b` finish.
+
+### Key Takeaways
+1. **Execution Context and Variable Environments**  
+   - Every execution context has its own variable environment.  
+   - Variables in different contexts do not interfere with one another.
+
+2. **Execution Context Lifecycle**  
+   - Created when a function is invoked.  
+   - Popped off the execution stack when the function finishes.  
+
+3. **Global Execution Context**  
+   - Always remains active.  
+   - Its variables persist even after function execution contexts are popped off.
+
+### Encouragement to Experiment
+- Run the example code in your browser's developer tools.  
+- Observe the behavior of variables in different contexts.  
+- Understanding this will set the foundation for more advanced concepts.

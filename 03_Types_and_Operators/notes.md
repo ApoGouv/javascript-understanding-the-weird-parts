@@ -372,3 +372,8 @@ Coercion refers to converting a value from one type to another. It is a crucial 
 - Understanding coercion, precedence, and associativity is crucial for writing predictable JavaScript code.
 - **Best Practice**: Use `===` and `!==` as default for comparisons to avoid unexpected coercion.
 
+
+## 3.8 Equality Comparisons Table
+
+[Javascript – Equality Comparison and Sameness](/pdf/Equalty-Comparison-And-Sameness.pdf)
+

@@ -89,13 +89,13 @@ An **operator** is essentially a special type of function, but with a distinct s
 ---
 
 ### Example of an Operator: `+` (Addition Operator)
-Consider the following example:  
+Consider the following example:
 ```javascript
 let a = 3 + 4;
 console.log(a); // Outputs: 7
 ```
 
-- The `+` symbol is the **addition operator**.  
+- The `+` symbol is the **addition operator**.
 - The JavaScript engine interprets this as a function call, similar to this pseudocode:
   ```javascript
   function add(x, y) {
@@ -107,14 +107,14 @@ console.log(a); // Outputs: 7
 ---
 
 ### Types of Notation for Operators
-- **Infix Notation:**  
+- **Infix Notation:**
   The operator is placed between its parameters (e.g., `3 + 4`). This is the format JavaScript uses, as it’s more human-readable.
-  
-- **Prefix Notation:**  
+
+- **Prefix Notation:**
   The operator is placed before its parameters (e.g., `+ 3 4`).
-  
-- **Postfix Notation:**  
-  The operator is placed after its parameters (e.g., `3 4 +`).  
+
+- **Postfix Notation:**
+  The operator is placed after its parameters (e.g., `3 4 +`).
   This is used in older calculators and some programming languages.
 
 ---
@@ -150,4 +150,84 @@ console.log(a); // Outputs: 7
 
 ### Why Operators Matter in a Dynamically Typed Language
 In JavaScript, where variable types are determined at runtime, operators must handle different types dynamically. This can lead to unexpected results if you’re unaware of how operators behave with mixed types. For now, remember that **operators are just special functions** provided by the JavaScript engine.
+
+
+## 3.4 Operator Precedence and Associativity
+
+**Big Word Alert: Operator Precedence**
+- **Operator Precedence** refers to the order in which operators (functions) are executed when there are multiple operators on the same line of code.
+- The **operator with the higher precedence** is executed first.
+
+**Big Word Alert: Associativity**
+- **Associativity** determines the order of execution when operators have the **same precedence**.
+- Associativity can be:
+  - **Left-to-right associativity**: Operators are executed from left to right.
+  - **Right-to-left associativity**: Operators are executed from right to left.
+
+---
+
+### Key Examples:
+
+1. **Precedence in Action**
+   ```javascript
+   var a = 3 + 4 * 5;
+   console.log(a); // Output: 23
+   ```
+   - **Why?**
+     - `*` (multiplication) has higher precedence than `+` (addition).
+     - The multiplication `4 * 5` is executed first (result: `20`), followed by addition (`3 + 20` → `23`).
+
+2. **Using Parentheses to Alter Precedence**
+   ```javascript
+   var a = (3 + 4) * 5;
+   console.log(a); // Output: 35
+   ```
+   - **Why?**
+     - Parentheses `( )` have the highest precedence.
+     - The expression inside `(3 + 4)` is executed first (result: `7`), followed by multiplication (`7 * 5` → `35`).
+
+---
+
+### Associativity in Action:
+
+1. **Assignment Operators (`=`)**
+   ```javascript
+   var a = 2, b = 3, c = 4;
+   a = b = c;
+   console.log(a, b, c); // Output: 4, 4, 4
+   ```
+   - **Why?**
+     - `=` has **right-to-left associativity**.
+     - `b = c` is executed first (`b` becomes `4`), then `a = b` (`a` becomes `4`).
+
+2. **Operators with Same Precedence**
+   ```javascript
+   var result = 10 / 2 * 3;
+   console.log(result); // Output: 15
+   ```
+   - **Why?**
+     - `/` and `*` have the **same precedence**.
+     - With **left-to-right associativity**, `10 / 2` is executed first (result: `5`), then `5 * 3` (result: `15`).
+
+---
+
+### Practical Importance:
+1. **Grouping with Parentheses**:
+   Parentheses allow us to override precedence and control the execution order explicitly.
+
+2. **Debugging Tip**:
+   When unexpected results arise, check the **[operator precedence table][operator-precedence-table]** and **[associativity rules][associativity-rules]**.
+
+[operator-precedence-table]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence#table
+[associativity-rules]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence#precedence_and_associativity
+
+
+---
+
+### Recap:
+- **Precedence** determines which operator is executed first based on priority.
+- **Associativity** resolves ties when operators have the same precedence:
+  - **Left-to-right** or **right-to-left**.
+
+Understanding these rules helps you avoid bugs and write clearer, more predictable JavaScript code.
 

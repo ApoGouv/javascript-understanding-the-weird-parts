@@ -85,13 +85,13 @@ In this example:
 - **Execution Context**:
   - **Execution context** is a wrapper that the JavaScript engine creates when your code runs. It helps manage the environment in which your code executes.
   - There are multiple execution contexts during a JavaScript program's execution, but the **base execution context** is called the **global execution context**.
-  
+
 - **Global Object**:
   - The **global execution context** creates two key things automatically:
     1. **Global Object**: In the browser environment, this is the `window` object. It provides access to various global properties and methods.
     2. **`this`**: A special variable automatically created by the JavaScript engine. In the global context, `this` refers to the global object (i.e., `window` in browsers).
   - These are set up by the JavaScript engine, even if no code is explicitly written to define them.
-  
+
 - **Global Scope**:
   - When code or variables are **not inside a function**, they are considered to be in the **global scope**. This means they are accessible throughout the entire program.
   - Variables and functions defined in the global scope are attached to the **global object**. For example, if you declare a variable `a`, it becomes accessible as `window.a` in browsers.
@@ -101,11 +101,11 @@ In this example:
   - In a browser (e.g., Google Chrome), the global object is the `window` object. This allows you to access global variables and functions using the `window` object or directly (e.g., `window.a` or just `a`).
   - The special variable `this` at the global level refers to the same `window` object, so `this === window` in the global context.
   - If you open a new browser tab, it will have its own separate execution context and a separate global object, though each tab has its own `window` object.
-  
+
 - **Outer Environment**:
   - The concept of the **outer environment** comes into play when you are inside a function. At the global level, there is no "outer" environment, so it’s referred to as `null`.
   - This concept will be important later when discussing functions, as they create their own execution contexts with links to their outer environments (the scope from which they were called).
-  
+
 - **Key Takeaways**:
   - **Global Execution Context**: When you run JavaScript code, the global execution context is created automatically. This context provides a **global object** (like `window` in browsers) and the special variable `this`.
   - **Global Object and `this`**: In browsers, the global object is `window`, and at the global scope, `this` refers to the same `window` object. This is true even without writing code.
@@ -118,7 +118,7 @@ In this example:
 - **Execution Context Creation**:
   - When JavaScript runs, it creates an **execution context**, a wrapper around the code to manage its execution.
   - This process occurs in two phases: the **creation phase** and the **execution phase**.
-  
+
 - **Hoisting Phenomenon**:
   - **Hoisting** refers to a surprising JavaScript behavior where variables and functions seem to be accessible before they are defined.
   - Example: If you call a function `b()` and log a variable `a` before defining them in your code, JavaScript won’t throw an error, even though `b()` is called before its definition.
@@ -217,13 +217,13 @@ In this example:
 
 ## 2.7 The Execution Context - Code Execution
 
-In JavaScript, the execution context operates in two main phases: 
+In JavaScript, the execution context operates in two main phases:
 
-1. **Creation Phase**  
+1. **Creation Phase**
    - Variables and functions are set up in memory.
    - Variables are initialized to `undefined`.
 
-2. **Execution Phase**  
+2. **Execution Phase**
    - The JavaScript engine runs your code line by line.
    - Code is interpreted, converted, compiled, and executed so the computer can understand it.
 
@@ -269,23 +269,23 @@ In this section, we explore two important concepts about JavaScript's execution 
 ---
 
 ### Single Threaded
-- **Definition**: JavaScript executes one command at a time.  
+- **Definition**: JavaScript executes one command at a time.
   - A program contains multiple commands, but only one is processed at any given moment.
-- **Context**: 
+- **Context**:
   - While JavaScript behaves this way, browsers themselves may handle other operations concurrently (e.g., rendering or networking).
   - From the perspective of the programmer, JavaScript execution is single threaded.
 
 ---
 
 ### Synchronous Execution
-- **Definition**: Code is executed one line at a time, in order, without skipping or performing multiple operations simultaneously.  
+- **Definition**: Code is executed one line at a time, in order, without skipping or performing multiple operations simultaneously.
   - Each command must complete before the next one begins.
 
 ---
 
 ### Key Takeaways:
 - JavaScript operates in a **single-threaded, synchronous execution model**, meaning it processes one task at a time, in the order it appears in the code.
-- **Asynchronous Concepts** (e.g., AJAX, where the "A" stands for asynchronous) will be discussed later. For now, remember that JavaScript itself is synchronous in behavior.  
+- **Asynchronous Concepts** (e.g., AJAX, where the "A" stands for asynchronous) will be discussed later. For now, remember that JavaScript itself is synchronous in behavior.
 
 
 ## 2.9 Function Invocation and the Execution Stack
@@ -293,18 +293,18 @@ In this section, we explore two important concepts about JavaScript's execution 
 In this subsection, we delve into how JavaScript handles function invocation and the concept of the **execution stack**, a key idea for understanding advanced JavaScript concepts.
 
 ### What is Function Invocation?
-- **Big Word Alert: Invocation**  
-  It simply means running or calling a function.  
-  In JavaScript, functions are invoked by appending parentheses to their name:  
+- **Big Word Alert: Invocation**
+  It simply means running or calling a function.
+  In JavaScript, functions are invoked by appending parentheses to their name:
   ```javascript
   myFunction();
   ```
 
 ### Execution Context and Function Invocation
-1. **Global Execution Context**  
-   When JavaScript starts, the global execution context is created. During its creation phase:  
-   - The global object (`window` in browsers) and the `this` keyword are set up.  
-   - Functions are stored in memory for later use.  
+1. **Global Execution Context**
+   When JavaScript starts, the global execution context is created. During its creation phase:
+   - The global object (`window` in browsers) and the `this` keyword are set up.
+   - Functions are stored in memory for later use.
 
    Example:
    ```javascript
@@ -314,9 +314,9 @@ In this subsection, we delve into how JavaScript handles function invocation and
    ```
    - `b` and `a` are stored in memory during the creation phase but are not executed until invoked.
 
-2. **Creating a New Execution Context**  
-   - When a function is invoked, a **new execution context** is created.  
-   - This context is added to the **execution stack**, which manages the order of function execution.  
+2. **Creating a New Execution Context**
+   - When a function is invoked, a **new execution context** is created.
+   - This context is added to the **execution stack**, which manages the order of function execution.
    - The stack operates on the **Last In, First Out (LIFO)** principle:
      - The most recently invoked function (at the top of the stack) is executed first.
      - Once it finishes, it is removed (**popped off**) the stack.
@@ -336,27 +336,27 @@ In this subsection, we delve into how JavaScript handles function invocation and
   - **Step 6**: Finally, the global execution context resumes.
 
 ### Important Characteristics
-1. **JavaScript is Synchronous**  
+1. **JavaScript is Synchronous**
    - Code is executed one line at a time, based on the current execution context (the one at the top of the stack).
 
-2. **New Context for Each Invocation**  
+2. **New Context for Each Invocation**
    - Every function invocation creates a new execution context, even for recursive calls.
 
-3. **Lexical Order Doesn’t Affect Execution**  
+3. **Lexical Order Doesn’t Affect Execution**
    - The position of a function in the code (its lexical order) doesn’t dictate execution timing; the invocation order does.
 
 ### Visualizing the Stack
-Imagine the execution stack as a physical stack of plates:  
+Imagine the execution stack as a physical stack of plates:
 - **At the Start**: The global context is the only plate.
-- **Invoke Function `a`**: Add `a`'s context on top.  
-- **Invoke Function `b`**: Add `b`'s context on top.  
-- **`b` Finishes**: Remove its plate, revealing `a`.  
+- **Invoke Function `a`**: Add `a`'s context on top.
+- **Invoke Function `b`**: Add `b`'s context on top.
+- **`b` Finishes**: Remove its plate, revealing `a`.
 - **`a` Finishes**: Remove its plate, leaving the global context.
 
 ### Key Points to Remember
-- Each function invocation adds a new execution context to the stack.  
-- When the function finishes, its context is removed, and the engine resumes the previous context.  
-- JavaScript's synchronous, single-threaded nature ensures that only one execution context runs at any given time.  
+- Each function invocation adds a new execution context to the stack.
+- When the function finishes, its context is removed, and the engine resumes the previous context.
+- JavaScript's synchronous, single-threaded nature ensures that only one execution context runs at any given time.
 
 This understanding is foundational for advanced topics like asynchronous JavaScript, closures, and scope.
 
@@ -366,10 +366,10 @@ This understanding is foundational for advanced topics like asynchronous JavaScr
 This subsection explores **functions**, their **context**, and the concept of **variable environments**, which are fundamental to understanding how JavaScript handles variables and memory.
 
 ### What is a Variable Environment?
-- **Big Word Alert: Variable Environment**  
+- **Big Word Alert: Variable Environment**
   It's simply a way of describing:
   - Where variables live in memory.
-  - How they relate to each other.  
+  - How they relate to each other.
 
 ### Example Code
 ```javascript
@@ -385,22 +385,22 @@ a();
 ```
 
 ### Step-by-Step Execution
-1. **Global Execution Context**  
+1. **Global Execution Context**
    - `myVar` is added to the global variable environment.
    - Its value is set to `1` when `myVar = 1` is executed.
 
-2. **Function `a` is Invoked**  
+2. **Function `a` is Invoked**
    - A new execution context is created for `a`.
    - A separate `myVar` is added to `a`'s variable environment and set to `2` when `myVar = 2` is executed.
 
-3. **Function `b` is Invoked Inside `a`**  
+3. **Function `b` is Invoked Inside `a`**
    - Another execution context is created for `b`.
-   - A new `myVar` is added to `b`'s variable environment.  
+   - A new `myVar` is added to `b`'s variable environment.
    - Its initial value is `undefined` because it is declared but not assigned a value.
 
 ### Scope and Execution Context
-- **Scope**: Determines where a variable can be accessed.  
-  - Each `myVar` is in its own execution context, making them distinct and independent.  
+- **Scope**: Determines where a variable can be accessed.
+  - Each `myVar` is in its own execution context, making them distinct and independent.
   - Function calls do not affect variables in other contexts.
 
 ### Console Output Walkthrough
@@ -431,21 +431,21 @@ console.log(myVar); // 1
   - `1`: Back to the global execution context after `a` and `b` finish.
 
 ### Key Takeaways
-1. **Execution Context and Variable Environments**  
-   - Every execution context has its own variable environment.  
+1. **Execution Context and Variable Environments**
+   - Every execution context has its own variable environment.
    - Variables in different contexts do not interfere with one another.
 
-2. **Execution Context Lifecycle**  
-   - Created when a function is invoked.  
-   - Popped off the execution stack when the function finishes.  
+2. **Execution Context Lifecycle**
+   - Created when a function is invoked.
+   - Popped off the execution stack when the function finishes.
 
-3. **Global Execution Context**  
-   - Always remains active.  
+3. **Global Execution Context**
+   - Always remains active.
    - Its variables persist even after function execution contexts are popped off.
 
 ### Encouragement to Experiment
-- Run the example code in your browser's developer tools.  
-- Observe the behavior of variables in different contexts.  
+- Run the example code in your browser's developer tools.
+- Observe the behavior of variables in different contexts.
 - Understanding this will set the foundation for more advanced concepts.
 
 
@@ -529,34 +529,34 @@ Understanding the scope chain helps debug variable-related issues and reveals ho
 
 ### 2.12 Scope, ES6, and let
 
-We've previously discussed concepts like execution context, execution environment, variable environment, and lexical environment. All of these play a role in defining **scope**.  
+We've previously discussed concepts like execution context, execution environment, variable environment, and lexical environment. All of these play a role in defining **scope**.
 
-#### Big Word Alert: Scope  
-Scope determines where a variable is accessible in your code.  
-- If you call the same function twice, each execution context gets its own variable. Though the variable names might look identical, they represent distinct variables in memory.  
-- Scope includes concepts like the scope chain, outer references, and the accessibility of variables in different contexts.  
+#### Big Word Alert: Scope
+Scope determines where a variable is accessible in your code.
+- If you call the same function twice, each execution context gets its own variable. Though the variable names might look identical, they represent distinct variables in memory.
+- Scope includes concepts like the scope chain, outer references, and the accessibility of variables in different contexts.
 
-Understanding scope at a deeper level (beyond examples) allows for better problem-solving. Knowing **how things work under the hood** in JavaScript helps developers write more efficient and error-free code.  
+Understanding scope at a deeper level (beyond examples) allows for better problem-solving. Knowing **how things work under the hood** in JavaScript helps developers write more efficient and error-free code.
 
-#### Introduction to `let` in ES6  
-ES6 (also known as ECMAScript 2015) introduced the `let` keyword as an alternative to `var`.  
-- **`var`**: Declares variables with **function scope**.  
-- **`let`**: Declares variables with **block scope**, meaning they are only accessible within the `{}` where they are defined.  
+#### Introduction to `let` in ES6
+ES6 (also known as ECMAScript 2015) introduced the `let` keyword as an alternative to `var`.
+- **`var`**: Declares variables with **function scope**.
+- **`let`**: Declares variables with **block scope**, meaning they are only accessible within the `{}` where they are defined.
 
-**Key Differences with `let`:**  
-1. **Block Scoping**:  
-   - Variables declared with `let` are scoped to the block they are in (e.g., inside `if` statements or `for` loops).  
-   - A variable defined in one block isn’t accessible outside it.  
+**Key Differences with `let`:**
+1. **Block Scoping**:
+   - Variables declared with `let` are scoped to the block they are in (e.g., inside `if` statements or `for` loops).
+   - A variable defined in one block isn’t accessible outside it.
 
-2. **Temporal Dead Zone (TDZ)**:  
-   - During the execution phase, `let` variables are placed in memory but **cannot be used before they are declared**.  
-   - Attempting to use a `let` variable before its declaration line will result in an error, even though it's already in memory.  
+2. **Temporal Dead Zone (TDZ)**:
+   - During the execution phase, `let` variables are placed in memory but **cannot be used before they are declared**.
+   - Attempting to use a `let` variable before its declaration line will result in an error, even though it's already in memory.
 
-3. **New Variable in Loops**:  
-   - For `let` inside loops, a new variable is created in memory for each iteration.  
-   - This ensures cleaner and more predictable loop behavior.  
+3. **New Variable in Loops**:
+   - For `let` inside loops, a new variable is created in memory for each iteration.
+   - This ensures cleaner and more predictable loop behavior.
 
-**Example with Block Scoping:**  
+**Example with Block Scoping:**
 ```javascript
 if (true) {
     let x = 10; // x is only accessible inside this block
@@ -565,8 +565,71 @@ if (true) {
 console.log(x); // Error: x is not defined
 ```
 
-#### Summary  
-- **`let` vs `var`**: `let` introduces **block scoping** and prevents certain bugs related to variable accessibility.  
-- Both `let` and `var` can coexist, and knowing how they work helps developers make informed decisions about their use.  
+#### Summary
+- **`let` vs `var`**: `let` introduces **block scoping** and prevents certain bugs related to variable accessibility.
+- Both `let` and `var` can coexist, and knowing how they work helps developers make informed decisions about their use.
 
 We'll explore these concepts further later in the course!
+
+
+### 2.13 What About Asynchronous Callbacks?
+
+JavaScript operates **synchronously**, executing code one line at a time. However, many developers encounter **asynchronous callbacks**, such as click events or fetching data.
+
+#### Big Word Alert: Asynchronous
+**Asynchronous** means **more than one thing happening at a time**. While JavaScript runs synchronously, browsers (or the environment in which JavaScript runs) manage asynchronous tasks like rendering, HTTP requests, or user events independently of the JavaScript engine.
+
+#### The Role of the Event Queue
+To handle asynchronous events, JavaScript uses the **event queue** in conjunction with the **execution stack**:
+1. **Execution Stack**: Handles synchronous code. Functions are added to and removed from the stack as they are invoked and completed.
+2. **Event Queue**: A list of asynchronous events (e.g., click events, HTTP responses) managed by the browser.
+
+When the execution stack becomes **empty**, JavaScript looks at the event queue to process pending events:
+- If an event has a registered callback (e.g., a function to handle a click), the callback is added to the execution stack for processing.
+- JavaScript continues processing the queue in the order events were added.
+
+#### Event Loop
+This constant checking of the event queue by the JavaScript engine is called the **event loop**.
+- While the stack is busy, the queue waits.
+- Once the stack is clear, the loop processes events from the queue, one by one, synchronously.
+
+#### Example of Asynchronous Behavior
+```javascript
+function longRunningTask() {
+    console.log("Starting long-running task...");
+    let start = Date.now();
+    while (Date.now() - start < 3000) {} // Simulates a task taking 3 seconds
+    console.log("Long-running task finished.");
+}
+
+function clickHandler() {
+    console.log("Click event handled.");
+}
+
+document.addEventListener("click", clickHandler);
+
+console.log("Starting execution.");
+longRunningTask();
+console.log("Execution finished.");
+```
+
+**Expected Output (when clicked during the long-running task):**
+1. "Starting execution."
+2. "Starting long-running task..."
+3. "Long-running task finished."
+4. "Execution finished."
+5. "Click event handled."
+
+**Explanation:**
+- The **long-running task** blocks the stack, preventing the click event from being processed.
+- The click event is placed in the event queue and processed only after the stack is empty.
+
+#### Key Takeaways
+1. **Synchronous Core**: JavaScript processes all code synchronously, line by line.
+2. **Asynchronous Events**: Managed by the environment (e.g., browser), events are added to the queue for later processing.
+3. **Event Queue and Event Loop**: The event loop periodically checks the queue and processes events when the stack is empty.
+
+#### Conclusion
+While JavaScript handles asynchronous events like clicks or HTTP responses, the actual execution remains synchronous. The asynchronous nature lies outside the JavaScript engine, in how events are queued and processed. Understanding this mechanism is crucial for writing efficient, non-blocking JavaScript.
+
+

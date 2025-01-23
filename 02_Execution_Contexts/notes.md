@@ -527,3 +527,46 @@ This lecture explains the **scope chain**, an essential concept in JavaScript. W
 Understanding the scope chain helps debug variable-related issues and reveals how JavaScript resolves variables under the hood.
 
 
+### 2.12 Scope, ES6, and let
+
+We've previously discussed concepts like execution context, execution environment, variable environment, and lexical environment. All of these play a role in defining **scope**.  
+
+#### Big Word Alert: Scope  
+Scope determines where a variable is accessible in your code.  
+- If you call the same function twice, each execution context gets its own variable. Though the variable names might look identical, they represent distinct variables in memory.  
+- Scope includes concepts like the scope chain, outer references, and the accessibility of variables in different contexts.  
+
+Understanding scope at a deeper level (beyond examples) allows for better problem-solving. Knowing **how things work under the hood** in JavaScript helps developers write more efficient and error-free code.  
+
+#### Introduction to `let` in ES6  
+ES6 (also known as ECMAScript 2015) introduced the `let` keyword as an alternative to `var`.  
+- **`var`**: Declares variables with **function scope**.  
+- **`let`**: Declares variables with **block scope**, meaning they are only accessible within the `{}` where they are defined.  
+
+**Key Differences with `let`:**  
+1. **Block Scoping**:  
+   - Variables declared with `let` are scoped to the block they are in (e.g., inside `if` statements or `for` loops).  
+   - A variable defined in one block isn’t accessible outside it.  
+
+2. **Temporal Dead Zone (TDZ)**:  
+   - During the execution phase, `let` variables are placed in memory but **cannot be used before they are declared**.  
+   - Attempting to use a `let` variable before its declaration line will result in an error, even though it's already in memory.  
+
+3. **New Variable in Loops**:  
+   - For `let` inside loops, a new variable is created in memory for each iteration.  
+   - This ensures cleaner and more predictable loop behavior.  
+
+**Example with Block Scoping:**  
+```javascript
+if (true) {
+    let x = 10; // x is only accessible inside this block
+    console.log(x); // Works fine
+}
+console.log(x); // Error: x is not defined
+```
+
+#### Summary  
+- **`let` vs `var`**: `let` introduces **block scoping** and prevents certain bugs related to variable accessibility.  
+- Both `let` and `var` can coexist, and knowing how they work helps developers make informed decisions about their use.  
+
+We'll explore these concepts further later in the course!

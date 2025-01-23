@@ -287,3 +287,76 @@ In this section, we explore two important concepts about JavaScript's execution 
 - JavaScript operates in a **single-threaded, synchronous execution model**, meaning it processes one task at a time, in the order it appears in the code.
 - **Asynchronous Concepts** (e.g., AJAX, where the "A" stands for asynchronous) will be discussed later. For now, remember that JavaScript itself is synchronous in behavior.  
 
+
+## 2.9 Function Invocation and the Execution Stack
+
+In this subsection, we delve into how JavaScript handles function invocation and the concept of the **execution stack**, a key idea for understanding advanced JavaScript concepts.
+
+### What is Function Invocation?
+- **Big Word Alert: Invocation**  
+  It simply means running or calling a function.  
+  In JavaScript, functions are invoked by appending parentheses to their name:  
+  ```javascript
+  myFunction();
+  ```
+
+### Execution Context and Function Invocation
+1. **Global Execution Context**  
+   When JavaScript starts, the global execution context is created. During its creation phase:  
+   - The global object (`window` in browsers) and the `this` keyword are set up.  
+   - Functions are stored in memory for later use.  
+
+   Example:
+   ```javascript
+   function b() {}
+   function a() { b(); }
+   a();
+   ```
+   - `b` and `a` are stored in memory during the creation phase but are not executed until invoked.
+
+2. **Creating a New Execution Context**  
+   - When a function is invoked, a **new execution context** is created.  
+   - This context is added to the **execution stack**, which manages the order of function execution.  
+   - The stack operates on the **Last In, First Out (LIFO)** principle:
+     - The most recently invoked function (at the top of the stack) is executed first.
+     - Once it finishes, it is removed (**popped off**) the stack.
+
+### How the Execution Stack Works
+- **Example Workflow**:
+  ```javascript
+  function b() {}
+  function a() { b(); }
+  a();
+  ```
+  - **Step 1**: The global execution context is created.
+  - **Step 2**: The engine encounters `a()` and creates an execution context for `a`, adding it to the stack.
+  - **Step 3**: Inside `a`, `b()` is invoked. An execution context for `b` is created and added to the stack.
+  - **Step 4**: Once `b` finishes executing, its context is removed from the stack.
+  - **Step 5**: The engine returns to `a`, finishes its execution, and removes `a`'s context.
+  - **Step 6**: Finally, the global execution context resumes.
+
+### Important Characteristics
+1. **JavaScript is Synchronous**  
+   - Code is executed one line at a time, based on the current execution context (the one at the top of the stack).
+
+2. **New Context for Each Invocation**  
+   - Every function invocation creates a new execution context, even for recursive calls.
+
+3. **Lexical Order Doesn’t Affect Execution**  
+   - The position of a function in the code (its lexical order) doesn’t dictate execution timing; the invocation order does.
+
+### Visualizing the Stack
+Imagine the execution stack as a physical stack of plates:  
+- **At the Start**: The global context is the only plate.
+- **Invoke Function `a`**: Add `a`'s context on top.  
+- **Invoke Function `b`**: Add `b`'s context on top.  
+- **`b` Finishes**: Remove its plate, revealing `a`.  
+- **`a` Finishes**: Remove its plate, leaving the global context.
+
+### Key Points to Remember
+- Each function invocation adds a new execution context to the stack.  
+- When the function finishes, its context is removed, and the engine resumes the previous context.  
+- JavaScript's synchronous, single-threaded nature ensures that only one execution context runs at any given time.  
+
+This understanding is foundational for advanced topics like asynchronous JavaScript, closures, and scope.
+

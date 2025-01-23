@@ -1,38 +1,17 @@
-function b() {
-  console.log(myVar); // 1
+function longRunningTask() {
+  console.log('Starting long-running task...');
+  var ms = 3000 + new Date().getTime();
+  while (new Date() < ms) {} // Simulates a task taking 3 seconds
+  console.log('Long-running task finished.');
 }
 
-function a() {
-  var myVar = 2;
-  b();
+function clickHandler() {
+  console.log('Click event handled.');
 }
 
-var myVar = 1;
-a();
+// Listen for the click event
+document.addEventListener('click', clickHandler);
 
-/*
-function a() {
-  function b() {
-    console.log(myVar); // 2
-  }
-
-  var myVar = 2;
-  b();
-}
-
-var myVar = 1;
-a();
-*/
-
-/*
-function a() {
-  function b() {
-    console.log(myVar); // 1
-  }
-
-  b();
-}
-
-var myVar = 1;
-a();
-*/
+console.log('Starting execution.');
+longRunningTask();
+console.log('Execution finished.');

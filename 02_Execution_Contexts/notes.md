@@ -447,3 +447,83 @@ console.log(myVar); // 1
 - Run the example code in your browser's developer tools.  
 - Observe the behavior of variables in different contexts.  
 - Understanding this will set the foundation for more advanced concepts.
+
+
+## 2.11 The Scope Chain
+
+This lecture explains the **scope chain**, an essential concept in JavaScript. With a solid understanding of the execution stack, execution context, and variable environments, this should now make sense.
+
+### Key Points
+1. **Example Code**:
+   - `function b` contains a `console.log(myVar)` but does not declare `myVar`.
+   - `function a` declares `myVar` and calls `b`.
+   - `myVar` is also declared globally.
+
+   **Code:**
+   ```javascript
+   var myVar = 1;
+
+   function a() {
+       var myVar = 2;
+       b();
+   }
+
+   function b() {
+       console.log(myVar);
+   }
+
+   a();
+   ```
+   **Output:** `1`
+
+2. **Why does it log `1`?**
+   - When `b` is invoked, a new execution context is created.
+   - Inside `b`, `myVar` is not found in its **variable environment**.
+   - JavaScript checks the **outer environment reference**, determined by where `b` was **lexically written** in the code.
+   - Since `b` is lexically at the **global level**, its outer environment is the **global execution context**, where `myVar = 1`.
+
+3. **Lexical Environment**
+   - A function's **outer environment** is based on where it is **physically written in the code**, not on where it is called.
+   - For `b`, being outside any function means its outer reference is global.
+
+4. **Changing Lexical Environment**
+   - Moving `b` inside `a` changes its outer reference.
+   - Example:
+     ```javascript
+     function a() {
+         var myVar = 2;
+
+         function b() {
+             console.log(myVar);
+         }
+
+         b();
+     }
+
+     a();
+     ```
+     **Output:** `2`
+   - Now, `b`'s outer reference points to `a`'s execution context, where `myVar = 2`.
+
+5. **Scope Chain**
+   - The **scope chain** is the chain of outer environment references, which JavaScript traverses when searching for a variable.
+   - Example flow:
+     1. Check the current execution context.
+     2. If not found, follow the outer reference.
+     3. Continue until the variable is found or the global context is reached.
+
+6. **Execution vs. Lexical Placement**
+   - The execution context stack determines the order of execution.
+   - Lexical placement determines the **outer reference**.
+
+7. **Debugging with Scope Chain Knowledge**
+   - If a variable has an unexpected value, understanding the scope chain allows you to trace where it was found.
+
+### Summary
+- **Scope**: Where a variable can be accessed.
+- **Scope Chain**: The linked chain of outer environment references used to resolve variables.
+- **Lexical Placement**: Determines a function's outer reference.
+
+Understanding the scope chain helps debug variable-related issues and reveals how JavaScript resolves variables under the hood.
+
+

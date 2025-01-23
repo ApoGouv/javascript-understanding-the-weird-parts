@@ -1,6 +1,6 @@
 # Section 2: Execution Contexts and Lexical Environments
 
-## 2.1 Conceptual Aside: Syntax Parsers, Execution Contexts, and Lexical Environments (continued)
+## 2.1 Conceptual Aside: Syntax Parsers, Execution Contexts, and Lexical Environments
 
 ### Big Word Alerts
 
@@ -37,8 +37,8 @@ These three concepts—**Syntax Parsers**, **Lexical Environments**, and **Execu
 - A key point is that in any particular **execution context**, a name can only have one value. However, that value can itself be a collection of **Name/Value pairs**.
 
 #### Example:
-```javascript
-const address = "100 Main Street"; // Name: 'address', Value: '100 Main Street'
+```text
+Address = "100 Main Street" // Name: 'address', Value: '100 Main Street'
 ```
 
 ### Objects in JavaScript:
@@ -169,11 +169,11 @@ In this example:
     console.log(a); // undefined
     ```
 
-### Comparing `undefined` and `not defined`
+### Comparing `undefined` and `is not defined`
 - **`undefined`**:
   - A value set by the JavaScript engine.
   - Indicates that the variable exists but hasn’t been assigned a value.
-- **`not defined`**:
+- **`is not defined`**:
   - An error when a variable is not declared, and the engine cannot find it in memory.
 
 ### Best Practices
@@ -233,11 +233,15 @@ In JavaScript, the execution context operates in two main phases:
 Consider the following example:
 ```javascript
 function b() {
-  console.log('Called the function');
+  console.log('Called b!');
 }
 
+b(); // Line 5
+
 console.log(a); // Line 7
-var a = 'Hello World!';
+
+var a = 'Hello World!'; // Line 9
+
 console.log(a); // Line 11
 ```
 
@@ -405,21 +409,17 @@ a();
 
 ### Console Output Walkthrough
 ```javascript
-var myVar = 1;
-console.log(myVar); // 1
-
+function b() {
+  var myVar;
+  console.log(myVar); // undefined
+}
 function a() {
   var myVar = 2;
   console.log(myVar); // 2
-
-  function b() {
-    var myVar;
-    console.log(myVar); // undefined
-  }
-
   b();
 }
-
+var myVar = 1;
+console.log(myVar); // 1
 a();
 console.log(myVar); // 1
 ```
@@ -461,17 +461,16 @@ This lecture explains the **scope chain**, an essential concept in JavaScript. W
 
    **Code:**
    ```javascript
-   var myVar = 1;
+   function b() {
+       console.log(myVar);
+   }
 
    function a() {
        var myVar = 2;
        b();
    }
 
-   function b() {
-       console.log(myVar);
-   }
-
+   var myVar = 1;
    a();
    ```
    **Output:** `1`
@@ -491,15 +490,16 @@ This lecture explains the **scope chain**, an essential concept in JavaScript. W
    - Example:
      ```javascript
      function a() {
-         var myVar = 2;
-
          function b() {
              console.log(myVar);
          }
+         
+         var myVar = 2;
 
          b();
      }
 
+     var myVar = 1;
      a();
      ```
      **Output:** `2`
@@ -597,8 +597,8 @@ This constant checking of the event queue by the JavaScript engine is called the
 ```javascript
 function longRunningTask() {
     console.log("Starting long-running task...");
-    let start = Date.now();
-    while (Date.now() - start < 3000) {} // Simulates a task taking 3 seconds
+    var ms = 3000 + new Date().getTime();
+    while (new Date < ms) {} // Simulates a task taking 3 seconds
     console.log("Long-running task finished.");
 }
 

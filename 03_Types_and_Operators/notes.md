@@ -441,3 +441,98 @@ Coercion refers to converting a value from one type to another. It is a crucial 
 - **Best Practice**: Use strict equality checks when `0` is a valid value to avoid unexpected behavior.
 - **Advantage**: Understanding how coercion works enhances debugging and allows for more effective use of advanced JavaScript concepts.
 
+
+## Section 3.10: Default Values
+
+### Setting Default Values in Functions
+- When a parameter is not passed to a function, JavaScript sets its value to `undefined`.
+  ```javascript
+  function greet(name) {
+      console.log('Hello ' + name);
+  }
+  greet(); // Output: Hello undefined
+  ```
+
+- The issue: If `undefined` is concatenated with a string, JavaScript coerces it to the string `"undefined"`, leading to undesired output.
+
+---
+
+### Traditional Method for Default Values
+To handle missing parameters, a common pattern in JavaScript uses the logical **OR (`||`)** operator:
+```javascript
+function greet(name) {
+    name = name || 'Your name here';
+    console.log('Hello ' + name);
+}
+greet('Tony'); // Output: Hello Tony
+greet();       // Output: Hello Your name here
+```
+
+---
+
+### How the OR (`||`) Operator Works
+- The OR operator returns the **first truthy value** it encounters:
+  - A **truthy value** coerces to `true` in a Boolean context.
+  - A **falsy value** coerces to `false`.
+
+**Falsy Values in JavaScript**:
+- `undefined`
+- `null`
+- `false`
+- `0`
+- `''` (empty string)
+- `NaN`
+
+**Truthy Values**: All other values.
+
+Examples:
+```javascript
+console.log(undefined || 'Hello'); // 'Hello'
+console.log('Hi' || 'Hello');      // 'Hi'
+console.log(0 || 1);               // 1
+console.log('' || 'Fallback');     // 'Fallback'
+```
+
+---
+
+### Operator Precedence
+- The **OR (`||`)** operator has **higher precedence** than the **assignment operator (`=`)**.
+- Therefore, `name = name || 'Default'` works as expected:
+  - First, `name || 'Default'` is evaluated.
+  - Then, the result is assigned to `name`.
+
+---
+
+### Caveat: Zero (`0`) as a Falsy Value
+- Passing `0` as a parameter causes the OR operator to treat it as falsy and assign the default value.
+  ```javascript
+  greet(0); // Output: Hello Your name here
+  ```
+- If `0` is a valid value, consider refining the logic, such as checking explicitly for `undefined`.
+
+---
+
+### Modern Alternative (ES6+)
+- In ES6 and later, you can set default values directly in the function declaration:
+  ```javascript
+  function greet(name = 'Your name here') {
+      console.log('Hello ' + name);
+  }
+  greet('Tony'); // Output: Hello Tony
+  greet();       // Output: Hello Your name here
+  greet(0);      // Output: Hello 0
+  ```
+
+---
+
+### Why Use This Pattern?
+- Reduces boilerplate compared to traditional `if` statements for default values.
+- Makes code concise and readable.
+
+---
+
+### Summary
+- JavaScript provides multiple ways to handle default parameter values.
+- The OR (`||`) operator is a powerful pattern for setting defaults but requires care with `0` and other falsy values.
+- Modern JavaScript offers a more intuitive and safer syntax with ES6 default parameters.
+

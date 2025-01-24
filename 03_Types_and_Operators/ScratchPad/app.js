@@ -1,15 +1,17 @@
-var a;
+/*
+function greet(name) {
+  console.log('Hello ' + name);
+}
+// greet('Tolis'); // Hello Tolis
+greet(); // Hello undefined
+*/
 
-// Goes to internet and looks for a value
-
-if (a) {
-  console.log('Something is there.');
-} else {
-  console.log('Nothing is there.');
+function greet(name) {
+  // This is common pattern to set default values
+  // If is undefined, empty string, null, 0, NaN, or false it will be replaced with '<Your name here>'
+  name = name || '<Your name here>';
+  console.log('Hello ' + name);
 }
 
-a = 0;
-
-if (a || a === 0) {
-  console.log('Something is there.');
-}
+greet('Tolis'); // Hello Tolis
+greet(); // Hello <Your name here>
